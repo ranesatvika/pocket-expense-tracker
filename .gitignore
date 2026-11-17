@@ -1,0 +1,10 @@
+# Local data and secrets
+expenses.db
+*.db
+.env
+
+# Python and local environment files
+__pycache__/
+*.py[cod]
+.venv/
+venv/
