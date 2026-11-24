@@ -1,0 +1,27 @@
+# Local data and secrets
+expenses.db
+*.db
+.env
+
+# Python and local environment files
+__pycache__/
+*.py[cod]
+.venv*/
+venv/
+# Additional environment protection
+.env.*
+!.env.example
+
+# Flask local files
+instance/
+
+# Testing and temporary files
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Editor and OS files
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,49 @@
+
+{
+  "id": "/",
+  "name": "Pocket Expense Tracker",
+  "short_name": "Pocket",
+  "description": "A smart personal and family expense tracker.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#10b981",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+  ,
+"shortcuts": [
+  {
+    "name": "Open Dashboard",
+    "short_name": "Dashboard",
+    "description": "Open your expense dashboard",
+    "url": "/",
+    "icons": [
+      {
+        "src": "/static/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
+]
+}

@@ -1,0 +1,108 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Expense — Pocket</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}">
+    <span class="brand-mark">p</span> pocket
+  </a>
+
+  <a class="logout-button" href="{{ url_for('index') }}">
+    Back to dashboard
+  </a>
+</header>
+
+<main class="layout">
+
+  <section class="panel edit-panel">
+
+    <div class="panel-title">
+      <span class="title-icon">✎</span>
+      <div>
+        <h2>Edit expense</h2>
+        <p>Update your expense details below.</p>
+      </div>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages">
+          {% for kind, message in messages %}
+            <p class="notice {{ kind }}">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form method="post" class="expense-form">
+
+      <input type="hidden"
+             name="_csrf_token"
+             value="{{ csrf_token() }}">
+
+      <label for="title">Expense description</label>
+      <input
+        id="title"
+        name="title"
+        maxlength="100"
+        value="{{ expense.title }}"
+        required
+      >
+
+      <label for="amount">Amount</label>
+      <div class="amount-input">
+        <span>₹</span>
+        <input
+          id="amount"
+          name="amount"
+          type="number"
+          min="0.01"
+          step="0.01"
+          value="{{ '%.2f'|format(expense.amount_paise / 100) }}"
+          required
+        >
+      </div>
+
+      <label for="category">Category</label>
+      <select id="category" name="category" required>
+        {% for category in categories %}
+          <option value="{{ category }}"
+            {% if expense.category == category %}selected{% endif %}>
+            {{ category }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <label for="spent_on">Date</label>
+      <input
+        id="spent_on"
+        name="spent_on"
+        type="date"
+        value="{{ expense.spent_on }}"
+        required
+      >
+
+      <button class="primary-button" type="submit">
+        Save changes →
+      </button>
+
+      <a class="cancel-edit" href="{{ url_for('index') }}">
+        Cancel
+      </a>
+
+    </form>
+
+  </section>
+
+</main>
+
+</body>
+</html>
