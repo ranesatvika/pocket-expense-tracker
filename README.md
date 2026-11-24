@@ -1,88 +1,156 @@
-<<<<<<< HEAD
-# Pocket Expense Tracker
+# 💰 Pocket Expense Tracker
 
-Pocket is a personal expense tracker built with Flask, SQLite for local use, and PostgreSQL for hosted use. It supports individual email/password accounts, budgeting, expense management, and data isolation between accounts.
-=======
-# Pocket Expense Tracker
+A simple, secure, and personal expense tracker built with Flask. Track your expenses, manage your budget, and keep your financial records organized.
 
-Pocket is a personal expense tracker built with Flask, SQLite for local use, and PostgreSQL for hosted use. It supports individual email/password accounts, budgeting, expense management, and data isolation between accounts.
+## 📸 Preview
 
-## Run it locally
+![Pocket Expense Tracker Dashboard](screenshots/dashboard.png)
 
-1. Install Python 3.10 or newer.
-2. In this folder, run `python -m pip install -r requirements.txt`.
-3. Start the site with `python app.py`.
-4. Open `http://127.0.0.1:5000`, choose **Create an account**, and register with your email and a password of at least 12 characters.
+🌐 **Live App:** https://pocket-expense-tracker-iy0z.onrender.com/
 
-With no `DATABASE_URL` set, entries are stored in `expenses.db` beside `app.py`.
+---
 
-## Deploy on Render with Supabase
+## ✨ Features
 
-<<<<<<< HEAD
-The hosted version uses Supabase PostgreSQL.
+- 🔐 **User Authentication** — Individual accounts with email and password.
+- 💸 **Expense Management** — Add, edit, and manage expenses.
+- 📊 **Dashboard & Analytics** — Visualize and track your spending.
+- 🎯 **Budget Management** — Organize expenses around your budget.
+- 👥 **Account Data Isolation** — Personal expense data is restricted to the respective account.
+- 📱 **Responsive Design** — Designed to work across different screen sizes.
+- 📲 **Installable PWA** — Install Pocket on supported phones and computers.
+- 📴 **Offline Page** — Includes an offline page for the installed application.
 
-1. Back up your Supabase database before deploying updates that modify the database schema.
-2. In Render, open your Pocket web service and its Environment settings.
-3. Ensure `DATABASE_URL` and `SECRET_KEY` are configured.
-4. `SECRET_KEY` should be a unique, long random secret. Keep it private.
-5. Ensure `DATABASE_URL` uses the appropriate Supabase PostgreSQL connection string for your deployment.
-6. Save your environment settings and deploy the repository.
+---
 
-During database initialization, existing expenses without an assigned user are assigned to the oldest registered account if one exists. Review and back up existing data before deploying database changes.
+## 🛠️ Tech Stack
 
-New accounts start with their own expense records. Personal expense access is restricted by account.
+| Technology | Purpose |
+|---|---|
+| Python | Backend programming |
+| Flask | Web framework |
+| SQLite | Local database |
+| PostgreSQL | Hosted database |
+| Supabase | Hosted PostgreSQL database |
+| HTML & CSS | Frontend |
+| JavaScript | Frontend functionality |
+| Render | Application hosting |
 
-**Important:** Never commit `SECRET_KEY`, database connection credentials, passwords, or personal database files to GitHub.
+---
 
-## Install Pocket on a phone or computer
+## 🚀 Run Locally
 
-After deployment over HTTPS, open the service URL in a supported browser and choose **Install app** or **Add to Home Screen** from the browser menu.
+### 1. Clone the repository
 
-## Data locations
+```bash
+git clone https://github.com/ranesatvika/pocket-expense-tracker.git
+```
 
-- Local entries are stored in `expenses.db`.
-- Hosted entries are stored in Supabase PostgreSQL.
-- Local and hosted data are separate unless deliberately migrated.
+### 2. Navigate to the project folder
 
-## Project files
+```bash
+cd pocket-expense-tracker
+```
 
-- `app.py` - Flask routes, account authentication, data isolation, and SQLite/PostgreSQL storage.
-- `templates/` — Tracker, sign-in, and registration pages.
-- `static/style.css` — Page styling.
-- `static/manifest.webmanifest` and icons — Installable app settings and icons.
-- `requirements.txt` — Dependencies.
-- `Procfile` — Production web start command.
-=======
-The hosted copy uses Supabase PostgreSQL, so it does not depend on Render's temporary filesystem.
+### 3. Install dependencies
 
-1. **Back up your Supabase database before deploying this update.** In Supabase, use the project's database backup/export options and keep the backup private.
-2. In Render, open your existing Pocket web service and its **Environment** settings.
-3. Keep your existing `DATABASE_URL` and `SECRET_KEY` values unchanged.
-4. Add these two environment variables before deploying:
-   - `OWNER_EMAIL` = the email address you want to use for your existing Pocket account.
-   - `OWNER_PASSWORD` = a new, unique password of at least 12 characters for that account. Store it in a password manager; do not put it in GitHub or send it in chat.
-5. You can remove the old `APP_PASSWORD` variable; this version no longer uses one shared password.
-6. Save the environment changes and deploy the updated repository.
-7. After deployment, open the site and sign in using `OWNER_EMAIL` and `OWNER_PASSWORD`. All expenses already in the shared table will be assigned to this account during the first successful database initialization. New signups will start with an empty tracker.
+```bash
+python -m pip install -r requirements.txt
+```
 
-**Important:** Do not deploy this update until `OWNER_EMAIL` and `OWNER_PASSWORD` are saved in Render. If old expenses exist and those settings are missing, the app intentionally stops rather than leaving old expenses unassigned or exposing them.
+### 4. Start the application
 
-Keep `OWNER_PASSWORD`, `SECRET_KEY`, and `DATABASE_URL` private. Do not commit secrets to GitHub. `SECRET_KEY` should remain a long random secret. `DATABASE_URL` should be the Supabase Session pooler connection string recommended for your Render setup.
+```bash
+python app.py
+```
 
-## Install Pocket on a phone or computer
+### 5. Open in your browser
 
-After deployment over HTTPS, open the service URL in a supported browser and choose **Install app** or **Add to Home Screen** from the browser menu. Pocket still needs an internet connection.
+http://127.0.0.1:5000
 
-## Data locations
+Create an account to get started.
 
-Local entries are stored in `expenses.db`. Hosted entries are stored in Supabase PostgreSQL. Local and hosted data are separate unless you deliberately migrate them.
+> Local data is stored in `expenses.db` when no `DATABASE_URL` is configured.
 
-## Project files
+---
 
-- `app.py` — Flask routes, account authentication, data isolation, and SQLite/PostgreSQL storage.
-- `templates/` — tracker, sign-in, and registration pages.
-- `static/style.css` — page styling.
-- `static/manifest.webmanifest` and icons — installable app settings and icons.
-- `requirements.txt` — Flask, Gunicorn, and PostgreSQL driver dependencies.
-- `Procfile` — production web start command.
->>>>>>> origin/main
+## ☁️ Deployment
+
+Pocket uses Render for hosting and Supabase PostgreSQL for hosted database storage.
+
+### Environment Variables
+
+Configure the following variables in your Render service:
+
+- `DATABASE_URL` — Supabase PostgreSQL connection string.
+- `SECRET_KEY` — A unique, secure secret key.
+- `OWNER_EMAIL` — Email address associated with the existing owner account.
+- `OWNER_PASSWORD` — A unique password of at least 12 characters.
+
+### Deployment Notes
+
+- Back up the Supabase database before deploying database-related changes.
+- Use the appropriate Supabase Session Pooler connection string for your Render setup.
+- Existing expenses are assigned to the configured owner account during the relevant database initialization.
+- Configure the owner credentials before deploying updates that require them.
+- Keep all credentials and database connection details private.
+
+---
+
+## 📱 Install Pocket
+
+Pocket is an installable Progressive Web App (PWA).
+
+1. Open the hosted application in a supported browser.
+2. Use the browser's **Install app** or **Add to Home Screen** option.
+3. Open Pocket from your device like a regular application.
+
+> An internet connection is required for the hosted application.
+
+---
+
+## 📂 Project Structure
+
+```text
+pocket-expense-tracker/
+│
+├── app.py
+├── convert_icons.py
+├── requirements.txt
+├── Procfile
+├── README.md
+│
+├── static/
+│   ├── style.css
+│   ├── service-worker.js
+│   ├── manifest.webmanifest
+│   └── icons/
+│
+└── templates/
+    ├── index.html
+    ├── login.html
+    ├── register.html
+    ├── edit_expense.html
+    └── offline.html
+```
+
+---
+
+## 🔒 Security
+
+- Passwords are handled using secure password hashing.
+- Account-based access restrictions are implemented.
+- Secrets and database credentials should never be committed to GitHub.
+- Database backups are recommended before schema updates.
+
+---
+
+## 👩‍💻 Author
+
+**Satvika Rane**
+
+GitHub: [@ranesatvika](https://github.com/ranesatvika)
+
+---
+
+⭐ If you find this project interesting, feel free to explore the repository!
