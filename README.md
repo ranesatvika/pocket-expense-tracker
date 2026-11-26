@@ -10,6 +10,9 @@ A simple, secure, and personal expense tracker built with Flask. Track your expe
 ### Expenses
 ![Pocket Expense Tracker Expenses](screenshots/expenses.png)
 
+### Budget
+![Pocket Expense Tracker Budget](screenshots/budget.png)
+
 🌐 **Live App:** https://pocket-expense-tracker-iy0z.onrender.com/
 
 ---
